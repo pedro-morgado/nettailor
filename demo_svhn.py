@@ -19,7 +19,7 @@ WEIGHT_DECAY = 0.0005
 
 teacher_dir = 'checkpoints/{task}/{arch}'.format(task=TASK, arch=BACKBONE)
 cmd = ("CUDA_VISIBLE_DEVICES={gpu} "
-	   "python train_teacher.py "
+	   "python main_teacher.py "
 	   "--task {task} "
 	   "--model-dir {model_dir} "
 	   "--arch {arch} "
@@ -55,7 +55,7 @@ teacher_fn = teacher_dir + '/checkpoint.pth.tar'
 full_model_fn = 'checkpoints/{task}/nettailor-{backbone}-{max_skip}Skip-D{teacher}-G{complexity}'.format(
 	task=TASK, backbone=BACKBONE, max_skip=MAX_SKIP, teacher=TEACHER_COEFF, complexity=COMPLEXITY_COEFF)
 cmd = ("CUDA_VISIBLE_DEVICES={gpu} "
-	   "python train_student.py "
+	   "python main_student.py "
 	   "--task {task} "
 	   "--model-dir {full_model_fn} "
 	   "--teacher-fn {teacher_fn} "
@@ -91,7 +91,7 @@ LR_EPOCHS = 8
 pruned_model_fn = 'checkpoints/{task}/nettailor-{backbone}-{max_skip}Skip-D{teacher}-G{complexity}-Pruned{thr}'.format(
 	task=TASK, backbone=BACKBONE, max_skip=MAX_SKIP, teacher=TEACHER_COEFF, complexity=COMPLEXITY_COEFF, thr=NUM_BLOCKS_PRUNED)
 cmd = ("CUDA_VISIBLE_DEVICES={gpu} "
-	   "python train_student.py "
+	   "python main_student.py "
 	   "--task {task} "
 	   "--model-dir {pruned_model_fn} "
 	   "--full-model-dir {full_model_fn} "

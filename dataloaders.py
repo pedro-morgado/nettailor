@@ -21,7 +21,7 @@ class VOC12Dataset(torchvision.datasets.ImageFolder):
                 final_idx.extend([random.choice(idx) for _ in range(1000)])
             self.samples = [self.samples[i] for i in final_idx]
 
-def get_dataloader(dataset, batch_size=1, shuffle=True, mode='train', num_workers=4):
+def get_dataset(dataset, mode):
     image_size = 256
     crop_size = 224
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
@@ -90,6 +90,11 @@ def get_dataloader(dataset, batch_size=1, shuffle=True, mode='train', num_worker
         data_root = 'data/voc12/{}'.format(split)
         dataset = VOC12Dataset(data_root=data_root, transform=transform, loader=pil_loader, balance=balance)
         dataset.num_classes = 20
+    return dataset
+
+
+def get_dataloader(dataset, batch_size=1, shuffle=True, mode='train', num_workers=4):
+    dataset = get_dataset(dataset, mode)
     loader = data.DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers, pin_memory=True)
     return loader
 

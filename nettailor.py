@@ -419,9 +419,9 @@ class NetTailor(nn.Module):
                 C += c_layer
         return C
 
-    def threshold_alphas(self, num_global=None, val_global=None, percent_global=None, num_adapter=None, val_adapter=None, percent_adapter=None, only_top=False):
-        assert sum([num_global is not None, val_global is not None, percent_global is not None]) <= 1
-        assert sum([num_adapter is not None, val_adapter is not None, percent_adapter is not None]) <= 1
+    def threshold_alphas(self, num_global=None, thr_global=None, percent_global=None, num_proxies=None, thr_proxies=None, percent_proxies=None, only_top=False):
+        assert sum([num_global is not None, thr_global is not None, percent_global is not None]) <= 1
+        assert sum([num_proxies is not None, thr_proxies is not None, percent_proxies is not None]) <= 1
 
         alphas_proxies, alphas_layer, keep = [], [], []
         for layer in self.layers:
@@ -436,8 +436,8 @@ class NetTailor(nn.Module):
             to_rm = np.argsort(alphas_layer)[:num_global]
         elif percent_global is not None:
             to_rm = np.argsort(alphas_layer)[:int(len(alphas_layer)*percent_global)]
-        elif val_global is not None:
-            to_rm = [i for i, aa in enumerate(alphas_layer) if aa <= val_global]
+        elif thr_global is not None:
+            to_rm = [i for i, aa in enumerate(alphas_layer) if aa <= thr_global]
         for rm_idx in to_rm:
             keep[rm_idx][0] = 0.
 
@@ -445,12 +445,12 @@ class NetTailor(nn.Module):
         meta_proxies = [(i, j) for i in range(len(alphas_proxies)) for j in range(alphas_proxies[i].size)]
         alphas_proxies = np.concatenate(alphas_proxies)
         to_rm = []
-        if num_adapter is not None:
-            to_rm.extend(np.argsort(alphas_proxies)[:num_adapter].tolist())
-        elif percent_adapter is not None:
-            to_rm.extend(np.argsort(alphas_proxies)[:int(len(alphas_proxies)*percent_adapter)].tolist())
-        elif val_adapter is not None:
-            to_rm.extend([i for i, aa in enumerate(alphas_proxies) if aa <= val_adapter])
+        if num_proxies is not None:
+            to_rm.extend(np.argsort(alphas_proxies)[:num_proxies].tolist())
+        elif percent_proxies is not None:
+            to_rm.extend(np.argsort(alphas_proxies)[:int(len(alphas_proxies)*percent_proxies)].tolist())
+        elif thr_proxies is not None:
+            to_rm.extend([i for i, aa in enumerate(alphas_proxies) if aa <= thr_proxies])
         
         if only_top:
             for i in range(len(self.layers)):
@@ -460,8 +460,8 @@ class NetTailor(nn.Module):
 
         for rm_idx in to_rm:
             layer_idx = meta_proxies[rm_idx][0]
-            adapter_idx = meta_proxies[rm_idx][1]+1
-            keep[layer_idx][adapter_idx] = 0.
+            proxies_idx = meta_proxies[rm_idx][1]+1
+            keep[layer_idx][proxies_idx] = 0.
 
         # Update keep variables
         for layer, k in zip(self.layers, keep):

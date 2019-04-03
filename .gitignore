@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
 # C extensions
 *.so
 
@@ -105,3 +106,7 @@ venv.bak/
 
 sftp-config.json
 convert_models.py
+data/flowers
+data/svhn
+data/voc12
+checkpoints/flowers
