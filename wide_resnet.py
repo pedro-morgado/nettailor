@@ -14,9 +14,9 @@ def conv3x3(in_planes, out_planes, stride=1):
     return nn.Conv2d(in_planes, out_planes, kernel_size=3, stride=stride, padding=1, bias=False)  
 
 # No projection: identity shortcut
-class BasicBlock(nn.Module):
+class BasicWideBlock(nn.Module):
     def __init__(self, in_planes, planes, stride=1, shortcut=False):
-        super(BasicBlock, self).__init__()
+        super(BasicWideBlock, self).__init__()
         self.in_planes = in_planes
         self.planes = planes
         self.stride = stride
@@ -96,42 +96,6 @@ class WideResNet(nn.Module):
         checkpoint['classifier.weight'] = state['classifier.weight']
         checkpoint['classifier.bias'] = state['classifier.bias']
         loaded_tensors = []
-        # for name in state:
-        #     tkn = name.split('.')
-        #     if 'num_batches_tracked' in name:
-        #         continue
-
-        #     if tkn[0] == 'conv1':
-        #         ckp_name = '.'.join(['pre_layers_conv', 'conv', tkn[-1]])
-
-        #     elif tkn[0] == 'bn1':
-        #         ckp_name = '.'.join(['pre_layers_conv', 'bns', '0', tkn[-1]])
-
-        #     elif tkn[0] == 'layers':
-        #         l = int(tkn[1])
-        #         for b, ll in enumerate(self.num_layers):
-        #             if ll > l:
-        #                 break
-        #             l -= ll
-        #         if tkn[2] == 'conv1':
-        #             ckp_name = 'layer{}.{}.conv1.conv.{}'.format(b+1, l, tkn[-1])
-        #         elif tkn[2] == 'bn1':
-        #             ckp_name = 'layer{}.{}.conv1.bns.0.{}'.format(b+1, l, tkn[-1])
-        #         elif tkn[2] == 'conv2':
-        #             ckp_name = 'layer{}.{}.conv2.1.conv.{}'.format(b+1, l, tkn[-1])
-        #         elif tkn[2] == 'bn2':
-        #             ckp_name = 'layer{}.{}.conv2.1.bns.0.{}'.format(b+1, l, tkn[-1])
-        #         else:
-        #             raise ValueError('Cannot match layer '+name)
-
-        #     elif tkn[0] in ['ends_bn', 'linear']:
-        #         continue
-        #     else:
-        #         raise ValueError('Cannot match layer '+name)
-
-        #     assert all([s1 == s2 for s1, s2 in zip(checkpoint[ckp_name].size(), state[name].size())])
-        #     state[name] = checkpoint[ckp_name].clone()
-        #     loaded_tensors.append(ckp_name)
 
         # self.load_state_dict(state)
         return loaded_tensors
@@ -142,7 +106,7 @@ class WideResNet(nn.Module):
 
 
 def wide_resnet26(num_classes=10, pretrained=True):
-    model = WideResNet(BasicBlock, [4,4,4], num_classes)
+    model = WideResNet(BasicWideBlock, [4,4,4], num_classes)
     if pretrained:
         path = PRETRAINED_PATH['wide_resnet26']
         if not os.path.isfile(path):

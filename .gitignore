@@ -109,4 +109,5 @@ convert_models.py
 data/flowers
 data/svhn
 data/voc12
+data/decathlon-1.0
 checkpoints/flowers
