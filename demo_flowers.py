@@ -34,10 +34,10 @@ cmd = ("CUDA_VISIBLE_DEVICES={gpu} "
 			epochs=EPOCHS, bs=BATCH_SIZE, lr=LR, lr_epochs=LR_EPOCHS, wd=WEIGHT_DECAY)
 
 print(cmd)
-os.system(cmd)
+# os.system(cmd)
 
 print(cmd + ' --evaluate')
-os.system(cmd + ' --evaluate')
+# os.system(cmd + ' --evaluate')
 
 ########################## TRAIN STUDENT ############################################### 
 
@@ -51,7 +51,7 @@ LR_EPOCHS = 20
 LR = 0.1
 
 teacher_fn = teacher_dir + '/checkpoint.pth.tar'
-full_model_fn = 'checkpoints/{task}/nettailor-{backbone}-{max_skip}Skip-D{teacher}-G{complexity}'.format(
+full_model_fn = 'checkpoints/{task}/nettailor-{backbone}-{max_skip}Skip-T{teacher}-C{complexity}'.format(
 	task=TASK, backbone=BACKBONE, max_skip=MAX_SKIP, teacher=TEACHER_COEFF, complexity=COMPLEXITY_COEFF)
 cmd = ("CUDA_VISIBLE_DEVICES={gpu} "
 	   "python main_student.py "
@@ -73,21 +73,21 @@ cmd = ("CUDA_VISIBLE_DEVICES={gpu} "
 			complexity=COMPLEXITY_COEFF, teacher=TEACHER_COEFF, epochs=EPOCHS, bs=BATCH_SIZE, lr=LR, lr_epochs=LR_EPOCHS, wd=WEIGHT_DECAY)
 
 print(cmd)
-os.system(cmd)
+# os.system(cmd)
 
 print(cmd + " --evaluate")
-os.system(cmd + " --evaluate")
+# os.system(cmd + " --evaluate")
 
 ########################## PRUNE STUDENT AND RETRAIN ############################################### 
 
 NUM_BLOCKS_PRUNED = 7
-PROXY_PRUNING_THRESHOLD = 0.05
+PROXY_PRUNING_THRESHOLD = 0.04
 BATCH_SIZE = 32
 EPOCHS = 60
 LR = 0.01
 LR_EPOCHS = 20
 
-pruned_model_fn = 'checkpoints/{task}/nettailor-{backbone}-{max_skip}Skip-D{teacher}-G{complexity}-Pruned{thr}'.format(
+pruned_model_fn = 'checkpoints/{task}/nettailor-{backbone}-{max_skip}Skip-T{teacher}-C{complexity}-Pruned{thr}'.format(
 	task=TASK, backbone=BACKBONE, max_skip=MAX_SKIP, teacher=TEACHER_COEFF, complexity=COMPLEXITY_COEFF, thr=NUM_BLOCKS_PRUNED)
 cmd = ("CUDA_VISIBLE_DEVICES={gpu} "
 	   "python main_student.py "
@@ -111,7 +111,7 @@ cmd = ("CUDA_VISIBLE_DEVICES={gpu} "
 			thr=NUM_BLOCKS_PRUNED, adapt_thr=PROXY_PRUNING_THRESHOLD, max_skip=MAX_SKIP, teacher=TEACHER_COEFF, epochs=EPOCHS, bs=BATCH_SIZE, lr=LR, lr_epochs=LR_EPOCHS)
 
 print(cmd)
-os.system(cmd)
+# os.system(cmd)
 
 print(cmd + " --evaluate")
-os.system(cmd + " --evaluate")
+# os.system(cmd + " --evaluate")

@@ -5,13 +5,11 @@ import torch
 import torch.nn as nn
 import torch.backends.cudnn as cudnn
 import torch.optim
-import resnet
+from models import teacher_resnet, teacher_resnet_wide
 import proj_utils
 import dataloaders
-import numpy as np
 
-parser = argparse.ArgumentParser(description='PyTorch Taskonomy Training')
-
+parser = argparse.ArgumentParser()
 parser.add_argument('--task', default='cifar100', help='task to train')
 parser.add_argument('--arch', default='resnet34', help='teacher architecture (default: resnet34)')
 parser.add_argument('--model-dir', default='experiments/default', help='model directory')
@@ -34,11 +32,6 @@ args = parser.parse_args()
 proj_utils.prep_output_folder(args.model_dir, args.evaluate)
 DEVICE = torch.device("cuda:0")
 
-torch.manual_seed(args.seed)
-cudnn.deterministic = True
-cudnn.benchmark = True
-np.random.seed(args.seed)
-
 def main():
     mode = 'train' if not args.evaluate else 'eval'
     logger = proj_utils.Logger(args.log2file, mode=mode, model_dir=args.model_dir)
@@ -54,18 +47,22 @@ def main():
     if mode == 'train':
         train_loader = dataloaders.get_dataloader(
             dataset=args.task, 
-            batch_size=args.batch_size,
+            batch_size=args.batch_size, 
             shuffle=True, 
-            mode=mode,
+            mode=mode, 
             num_workers=args.workers)
+        logger.add_line("\n"+"="*30+"   Train data   "+"="*30)
+        logger.add_line(str(train_loader.dataset))
 
         val_loader = dataloaders.get_dataloader(
-            dataset=args.task,
+            dataset=args.task, 
             batch_size=args.batch_size, 
             shuffle=False, 
-            mode='eval',
+            mode='eval', 
             num_workers=args.workers)
         num_classes = train_loader.dataset.num_classes
+        logger.add_line("\n"+"="*30+"   Validation data   "+"="*30)
+        logger.add_line(str(val_loader.dataset))
 
     elif mode == 'eval':
         test_loader = dataloaders.get_dataloader(
@@ -75,9 +72,15 @@ def main():
             mode=mode, 
             num_workers=args.workers)
         num_classes = test_loader.dataset.num_classes
+        logger.add_line("\n"+"="*30+"   Test data   "+"="*30)
+        logger.add_line(str(test_loader.dataset))
+
 
     # Model
-    model = eval('resnet.{}(pretrained=True, num_classes={})'.format(args.arch, num_classes))
+    if args.arch.startswith('resnet'):
+        model = teacher_resnet.create_teacher(args.arch, pretrained=True, num_classes=num_classes)
+    elif args.arch.startswith('wide_resnet'):
+        model = teacher_resnet_wide.create_teacher(args.arch, pretrained=True, num_classes=num_classes)
     model = model.to(DEVICE)
 
     logger.add_line("="*30+"   Model   "+"="*30)
@@ -87,21 +90,19 @@ def main():
 
     #Loss
     criterion = nn.CrossEntropyLoss()
-
-    # Optimizer
-    if mode == 'train':
-        optimizer = torch.optim.SGD(model.parameters(), lr=args.lr, 
-            momentum=args.momentum, weight_decay=args.weight_decay)
     
     ############################ TRAIN #########################################
     if mode == 'train':
+        optimizer = torch.optim.SGD(model.parameters(), lr=args.lr, 
+            momentum=args.momentum, weight_decay=args.weight_decay)
+
         for epoch in range(args.epochs):
             # Train for one epoch
             logger.add_line("="*30+"   Train (Epoch {})   ".format(epoch)+"="*30)
             optimizer = proj_utils.adjust_learning_rate(optimizer, epoch, args.lr, args.lr_decay_epochs, logger)
             train(train_loader, model, criterion, optimizer, epoch, logger)
 
-            if epoch % args.eval_freq == args.eval_freq-1:
+            if epoch % args.eval_freq == args.eval_freq-1 or epoch == args.epochs-1:
                 # Evaluate on validation set
                 logger.add_line("="*30+"   Valid (Epoch {})   ".format(epoch)+"="*30)
                 err, acc, run_time = validate(val_loader, model, criterion, logger, epoch)
@@ -136,7 +137,7 @@ def train(data_loader, model, criterion, optimizer, epoch, logger):
     model.train()
 
     end = time.time()
-    for i, (images, labels) in enumerate(data_loader):
+    for i, (images, labels, _) in enumerate(data_loader):
         images, labels = images.to(DEVICE), labels.to(DEVICE)
         if images.size(0) != args.batch_size:
             break
@@ -181,7 +182,7 @@ def validate(data_loader, model, criterion, logger, epoch=None):
     image_ids, preds = [], []
     with torch.no_grad():
         end = time.time()
-        for i, (images, labels) in enumerate(data_loader):
+        for i, (images, labels, _) in enumerate(data_loader):
             images, labels = images.to(DEVICE), labels.to(DEVICE)
 
             # compute output

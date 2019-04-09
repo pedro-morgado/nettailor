@@ -51,7 +51,7 @@ LR_EPOCHS = 20
 LR = 0.1
 
 teacher_fn = teacher_dir + '/checkpoint.pth.tar'
-full_model_fn = 'checkpoints/{task}/nettailor-{backbone}-{max_skip}Skip-D{teacher}-G{complexity}'.format(
+full_model_fn = 'checkpoints/{task}/nettailor-{backbone}-{max_skip}Skip-D{teacher}-C{complexity}'.format(
 	task=TASK, backbone=BACKBONE, max_skip=MAX_SKIP, teacher=TEACHER_COEFF, complexity=COMPLEXITY_COEFF)
 cmd = ("CUDA_VISIBLE_DEVICES={gpu} "
 	   "python main_student.py "
@@ -87,7 +87,7 @@ EPOCHS = 60
 LR = 0.01
 LR_EPOCHS = 20
 
-pruned_model_fn = 'checkpoints/{task}/nettailor-{backbone}-{max_skip}Skip-D{teacher}-G{complexity}-Pruned{thr}'.format(
+pruned_model_fn = 'checkpoints/{task}/nettailor-{backbone}-{max_skip}Skip-D{teacher}-C{complexity}-Pruned{thr}'.format(
 	task=TASK, backbone=BACKBONE, max_skip=MAX_SKIP, teacher=TEACHER_COEFF, complexity=COMPLEXITY_COEFF, thr=NUM_BLOCKS_PRUNED)
 cmd = ("CUDA_VISIBLE_DEVICES={gpu} "
 	   "python main_student.py "

@@ -4,10 +4,9 @@
 
 This repository contains the source code accompanying our CVPR 2019 paper.
 
-**NetTailor: Tuning the architecture, not just the weights**  
+**[NetTailor: Tuning the architecture, not just the weights.](https://arxiv.org)**  
 [Pedro Morgado](http://www.svcl.ucsd.edu/~morgado), [Nuno Vasconcelos](http://www.svcl.ucsd.edu/~nuno).  
 In Computer Vision and Pattern Recognition, 2019.
-[[Arxiv]](https://arxiv.org/abs/)
 
 ```
 @inproceedings{morgado_nettailor,
@@ -28,7 +27,7 @@ Download and prepare demo datasets: SVHN, Flowers and Pascal VOC.
 >> cd data && python prepare_data.py
 ```
 
-If interested in Visual Decathlon results, please download data and models.
+If interested in Visual Decathlon results, download data and models.
 ```bash
 >> cd data && python download_decathlon.py && cd ../checkpoints && python download_models.py
 ```
@@ -61,6 +60,6 @@ We also release the final models obtained in the visual decathlon challenge. Uni
 1. ``wide_nettailor.py`` and ``wide_resnet.py``: Model definition for the student and teacher networks, respectively, based on wide resnet backbone.
 1. ``main_student_decathlon.py`` and ``main_teacher_decathlon.py``: Training and evaluation code for the student and teacher networks, respectively. 
 
-**Usage:**  Refer to the ``deploy_decathlon.ipynb`` notebook for a usage example. This notebook also showcases some predictions obtained with models trained with NetTailor on all nine datasets.
+**Usage:**  Refer to the ``deploy_decathlon.ipynb`` notebook for a usage example. This notebook also showcases some predictions obtained with models trained with NetTailor on all nine datasets from the visual decathlon challenge.
 
-If you encounter any issue when using our code or model, please let me know.
+If you encounter any issue when using our code or models, please let me know.
