@@ -9,7 +9,7 @@
     <meta name="author" content="Pedro Morgado">
     <!-- <meta name="description" content=""> -->
     <meta property="og:title" content="NetTailor: Tuning the architecture, not just the weights">
-    <meta property="og:image" content="https://pedro-morgado.github.io/nettailor/figs/teaser.png">
+    <meta property="og:image" content="https://pedrgito-morgado.github.io/nettailor/figs/teaser.png">
     <meta property="og:description" content="We introduce a transfer learning procedure, denoted NetTailor, in which layers of a pre-trained CNN are used as universal blocks that can be combined with small task-specific layers to generate new networks. Besides minimizing classification error, the new network is trained to mimic the internal activations of a strong unconstrained CNN, and minimize its complexity by the combination of 1) a soft-attention mechanism over blocks and 2) complexity regularization constraints. In this way, NetTailor can adapt the network architecture, not just its weights, to the target task.">
     <meta property="og:url" content="https://pedro-morgado.github.io/nettilor/">
     <meta property="og:type" content="website" />
@@ -30,8 +30,6 @@
 
     <!-- Custom fonts for this template -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <!-- <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet"> -->
-    <!-- <link href="vendor/font-awesome/css/all.min.css" rel="stylesheet"> -->
     <link href="vendor/academicons/css/academicons.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
@@ -101,19 +99,14 @@
     </nav>
 
 
-
-
-
     <header class="masthead text-center text-white d-flex">
       <div class="container align-items-center mx-auto my-auto">
         <div class="row">
           <div class="col-lg-10 col-md-10 col-sm-12 mx-auto">
-            <h1> 
-            	NetTailor: Tuning the parameters, not just the weights
-            </h1>
+            <h1>NetTailor: Tuning the architecture, not just the weights</h1>
           </div>
 
-          <div class="row col-6 mx-auto">
+          <div class="row col-lg-6 col-sm-12 mx-auto">
             <div class="col-6 mt-3 mx-auto">
               <h4 class="text-faded">
                 <a href="http://www.svcl.ucsd.edu/~morgado" class="text-faded" target="_blank">Pedro Morgado</a>
@@ -141,7 +134,7 @@
 
         <hr class="my-4">
 
-        <div class="row col-10 mx-auto mt-0">
+        <div class="row col-lg-10 col-sm-12 mx-auto mt-0">
           <div class="col-12">
             <p class="text-muted text-justify">
               Real-world applications of object recognition often require the solution of <i>multiple</i> tasks in a single platform. Under the standard paradigm of network fine-tuning, an entirely new CNN is learned per task, and the final network size is independent of task complexity. This is wasteful, since simple tasks require smaller networks than more complex tasks, and limits the number of tasks that can be solved simultaneously. To address these problems, we propose a transfer learning procedure, denoted NetTailor, in which layers of a pre-trained CNN are used as universal blocks that can be combined with small task-specific layers to generate new networks. Besides minimizing classification error, the new network is trained to mimic the internal activations of a strong unconstrained CNN, and minimize its complexity by the combination of 1) a soft-attention mechanism over blocks and 2) complexity regularization constraints. In this way, NetTailor can adapt the network architecture, not just its weights, to the target task. Experiments show that networks adapted to simple tasks, such as character or traffic sign recognition, become significantly smaller than those adapted to hard tasks, such as fine-grained recognition. More importantly, due to the modular nature of the procedure, this reduction in network complexity is achieved without compromise of either parameter sharing across tasks, or classification accuracy.
@@ -151,7 +144,7 @@
 
         <hr class="my-4 light">
 
-        <div class="row col-10 mx-auto">
+        <div class="row col-lg-10 col-sm-12 mx-auto">
           <div class="text-center">
             <p class="mb-2">To appear in Conference on Computer Vision and Pattern Recognition (CVPR'19).</p>
             <a href="http://www.svcl.ucsd.edu/~morgado/nettailor/docs/nettailor.pdf" target="_blank">
@@ -162,43 +155,43 @@
 
         <hr class="my-3 light">
 
-        <div class="row col-10 mx-auto">
-          <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+        <div class="row col-lg-6 col-sm-12 mx-auto">
+          <div class="col-3 text-center">
             <!-- <div class="service-box mx-auto"> -->
               <a class="text-primary" href="https://arxiv.org/abs/" target="_blank">
-                <i class="ai ai-4x ai ai-arxiv"></i>
+                <i class="ai ai-3x ai ai-arxiv"></i>
               </a>
-              <h3 class="my-3">Arxiv</h3>
+              <h5 class="my-3">Arxiv</h5>
               <!-- <p class="text-muted mb-0">Read the preprint.</p> -->
             <!-- </div> -->
           </div>
 
-          <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+          <div class="col-3 text-center">
             <!-- <div class="service-box mx-auto"> -->
               <a class="text-primary" href="https://github.com/pedro-morgado/nettilor" target="_blank">
-                <i class="fab fa-4x fa-github"></i>
+                <i class="fab fa-3x fa-github"></i>
               </a>
-              <h3 class="my-3">Repository</h3>
+              <h5 class="my-3">Code</h5>
               <!-- <p class="text-muted mb-0">Check out the code.</p> -->
               <!-- <p class="mt-0 mb-0" style="color: #d73232">Coming soon!</p> -->
             <!-- </div> -->
           </div>
 
-          <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+          <div class="col-3 text-center">
             <!-- <div class="service-box mx-auto"> -->
               <a class="text-primary" href="http://www.svcl.ucsd.edu/~morgado/nettailor/docs/poster.pdf" target="_blank">
-                <i class="fab fa-4x fa-slideshare "></i>
+                <i class="fab fa-3x fa-slideshare "></i>
               </a>
-              <h3 class="my-3">Poster</h3>
+              <h5 class="my-3">Poster</h5>
               <!-- <p class="mb-0" style="color: #d73232">Coming soon!</p> -->
             <!-- </div> -->
           </div>
 
-          <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+          <div class="col-3 text-center">
             <!-- <div class="service-box mx-auto"> -->
               <a class="text-primary" href="http://www.svcl.ucsd.edu/~morgado/nettailor/nettailor.bib" target="_blank"> 
-                <i class="fa fa-4x fa-bars "></i> </a>
-              <h3 class="my-3">Bibtex</h3>
+                <i class="fa fa-3x fa-bars "></i> </a>
+              <h5 class="my-3">Bibtex</h5>
               <!-- <p class="text-muted mb-0">Cite the paper.</p> -->
             <!-- </div> -->
           </div>
@@ -213,11 +206,11 @@
 
     <section>
       <div class="container pt-5" id="algorithm">
-        <div class="row col-10 mx-auto">
+        <div class="row col-lg-10 col-sm-12 mx-auto">
           <div class="col-12 text-center">
             <h1 class="section-heading">NetTailor</h1>
             <hr class="my-4">
-            <img src="./figs/teaser_row.png" alt="paper" class="img-thumbnail" style="opacity: 1.0">
+            <img src="./figs/teaser_row.png" alt="paper" class="img-thumbnail" style="opacity: 1.0; max-width:100%">
             <p class="text-muted my-3">
               <strong>Schematic representation of the NetTailor procedure.</strong>
             </p>
@@ -243,9 +236,7 @@
             </p>
 
             <h5>Source code and trained models available on 
-              <a class="text-primary" href="https://github.com/pedro-morgado/nettailor" target="_blank">
-                GitHub
-              </a>.
+              <a class="text-primary" href="https://github.com/pedro-morgado/nettailor" target="_blank">GitHub</a>.
             </h5>
           </div>
 
@@ -256,7 +247,7 @@
 
     <section>
       <div class="container pt-5" id="architectures">
-        <div class="row col-10 mx-auto">
+        <div class="row col-lg-10 col-sm-12 mx-auto">
           <div class="col-12 text-center">
             <h1 class="section-heading">Architectures</h1>
             <hr class="my-4">
@@ -270,12 +261,12 @@
         </div>
         <hr class="my-3 light">
 
-        <div class="row col-10 mx-auto">
-          <div class="col-3 mx-auto my-auto text-center">
+        <div class="row col-lg-10 col-sm-12 mx-auto">
+          <div class="col-lg-3 col-sm-12 mx-auto my-auto text-center">
             <h5>Aircraft</h5>
-            <i class="fas fa-3x fa-plane"></i>
+            <i class="fas d-none d-lg-block fa-3x fa-plane"></i>
           </div>
-          <div class="col-9 mx-auto my-auto text-center">
+          <div class="col-lg-9 col-sm-12 mx-auto my-auto text-center">
             <img id="gif-1" class="img-thumbnail" style="opacity: 1.0" 
               src="./figs/architectures/aircraft.png" 
               onmouseover="document.getElementById('gif-1').src='./figs/architectures/aircraft.gif'" 
@@ -285,12 +276,12 @@
         </div>
         <hr class="my-3 light">
 
-        <div class="row col-10 mx-auto">
-          <div class="col-3 mx-auto my-auto text-center">
+        <div class="row col-lg-10 col-sm-12 mx-auto">
+          <div class="col-lg-3 col-sm-12 mx-auto my-auto text-center">
             <h5>CIFAR-100</h5>
-            <i class="fas fa-3x fa-bicycle"></i>
+            <i class="fas d-none d-lg-block fa-3x fa-bicycle"></i>
           </div>
-          <div class="col-9 mx-auto my-auto text-center">
+          <div class="col-lg-9 col-sm-12 mx-auto my-auto text-center">
             <img id="gif-2" class="img-thumbnail" style="opacity: 1.0" 
               src="./figs/architectures/cifar100.png" 
               onmouseover="document.getElementById('gif-2').src='./figs/architectures/cifar100.gif'" 
@@ -300,12 +291,12 @@
         </div>
         <hr class="my-3 light">
 
-        <div class="row col-10 mx-auto">
-          <div class="col-3 mx-auto my-auto text-center">
+        <div class="row col-lg-10 col-sm-12 mx-auto">
+          <div class="col-lg-3 col-sm-12 mx-auto my-auto text-center">
             <h5>Pedestrian</h5>
-            <i class="fas fa-3x fa-walking"></i>
+            <i class="fas d-none d-lg-block fa-3x fa-walking"></i>
           </div>
-          <div class="col-9 mx-auto my-auto text-center">
+          <div class="col-lg-9 col-sm-12 mx-auto my-auto text-center">
             <img id="gif-3" class="img-thumbnail" style="opacity: 1.0" 
               src="./figs/architectures/daimlerpedcls.png" 
               onmouseover="document.getElementById('gif-3').src='./figs/architectures/daimlerpedcls.gif'" 
@@ -315,12 +306,12 @@
         </div>
         <hr class="my-3 light">
 
-        <div class="row col-10 mx-auto">
-          <div class="col-3 mx-auto my-auto text-center">
+        <div class="row col-lg-10 col-sm-12 mx-auto">
+          <div class="col-lg-3 col-sm-12 mx-auto my-auto text-center">
             <h5>DTD (Textures)</h5>
-            <i class="fas fa-3x fa-shapes"></i>
+            <i class="fas d-none d-lg-block fa-3x fa-shapes"></i>
           </div>
-          <div class="col-9 mx-auto my-auto text-center">
+          <div class="col-lg-9 col-sm-12 mx-auto my-auto text-center">
             <img id="gif-4" class="img-thumbnail" style="opacity: 1.0" 
               src="./figs/architectures/dtd.png" 
               onmouseover="document.getElementById('gif-4').src='./figs/architectures/dtd.gif'" 
@@ -330,12 +321,12 @@
         </div>
         <hr class="my-3 light">
 
-        <div class="row col-10 mx-auto">
-          <div class="col-3 mx-auto my-auto text-center">
+        <div class="row col-lg-10 col-sm-12 mx-auto">
+          <div class="col-lg-3 col-sm-12 mx-auto my-auto text-center">
             <h5>GTSR (Traffic Signs)</h5>
-            <i class="fas fa-3x fa-traffic-light"></i>
+            <i class="fas d-none d-lg-block fa-3x fa-traffic-light"></i>
           </div>
-          <div class="col-9 mx-auto my-auto text-center">
+          <div class="col-lg-9 col-sm-12 mx-auto my-auto text-center">
             <img id="gif-5" class="img-thumbnail" style="opacity: 1.0" 
               src="./figs/architectures/gtsrb.png" 
               onmouseover="document.getElementById('gif-5').src='./figs/architectures/gtsrb.gif'" 
@@ -345,12 +336,12 @@
         </div>
         <hr class="my-3 light">
 
-        <div class="row col-10 mx-auto">
-          <div class="col-3 mx-auto my-auto text-center">
+        <div class="row col-lg-10 col-sm-12 mx-auto">
+          <div class="col-lg-3 col-sm-12 mx-auto my-auto text-center">
             <h5>Omniglot (Characters)</h5>
-            <i class="fas fa-3x fa-font"></i>
+            <i class="fas d-none d-lg-block fa-3x fa-font d-none d-lg-block"></i>
           </div>
-          <div class="col-9 mx-auto my-auto text-center">
+          <div class="col-lg-9 col-sm-12 mx-auto my-auto text-center">
             <img id="gif-6" class="img-thumbnail" style="opacity: 1.0" 
               src="./figs/architectures/omniglot.png" 
               onmouseover="document.getElementById('gif-6').src='./figs/architectures/omniglot.gif'" 
@@ -360,12 +351,12 @@
         </div>
         <hr class="my-3 light">
 
-        <div class="row col-10 mx-auto">
-          <div class="col-3 mx-auto my-auto text-center">
+        <div class="row col-lg-10 col-sm-12 mx-auto">
+          <div class="col-lg-3 col-sm-12 mx-auto my-auto text-center">
             <h5>SVHN (Digits)</h5>
-            <i class="fas fa-3x fa-sort-numeric-down"></i>
+            <i class="fas d-none d-lg-block fa-3x fa-sort-numeric-down"></i>
           </div>
-          <div class="col-9 mx-auto my-auto text-center">
+          <div class="col-lg-9 col-sm-12 mx-auto my-auto text-center">
             <img id="gif-7" class="img-thumbnail" style="opacity: 1.0" 
               src="./figs/architectures/svhn.png" 
               onmouseover="document.getElementById('gif-7').src='./figs/architectures/svhn.gif'" 
@@ -375,12 +366,12 @@
         </div>
         <hr class="my-3 light">
 
-        <div class="row col-10 mx-auto">
-          <div class="col-3 mx-auto my-auto text-center">
+        <div class="row col-lg-10 col-sm-12 mx-auto">
+          <div class="col-lg-3 col-sm-12 mx-auto my-auto text-center">
             <h5>Flowers</h5>
-            <i class="fas fa-3x fa-spa"></i>
+            <i class="fas d-none d-lg-block fa-3x fa-spa"></i>
           </div>
-          <div class="col-9 mx-auto my-auto text-center">
+          <div class="col-lg-9 col-sm-12 mx-auto my-auto text-center">
             <img id="gif-8" class="img-thumbnail" style="opacity: 1.0" 
               src="./figs/architectures/vgg-flowers.png" 
               onmouseover="document.getElementById('gif-8').src='./figs/architectures/vgg-flowers.gif'" 
@@ -395,13 +386,13 @@
 
     <section>
       <div class="container pt-5 pb-5" id="authors">
-        <div class="row col-10 mx-auto">
+        <div class="row col-lg-6 col-md-8 col-sm-12 mx-auto">
           <div class="col-12 text-center">
             <h1 class="section-heading">Authors</h1>
             <hr class="my-4">
           </div>
 
-          <div class="col-4 mx-auto">
+          <div class="col-6 mx-auto">
             <div>
             	<a href="http://www.svcl.ucsd.edu/~morgado" target="_blank">
               		<img src="./figs/authors/pedro.jpg" alt="pedro" class="img-thumbnail">
@@ -410,13 +401,13 @@
             <br>
             <div class="text-muted text-center">
               <a href="http://www.svcl.ucsd.edu/~morgado" target="_blank">
-                <h3 class="mb-2">Pedro Morgado</h3>
+                <h4 class="mb-2 text-primary">Pedro Morgado</h4>
               </a> 
               <h5>UC San Diego</h5>
             </div>
           </div>
 
-          <div class="col-4 mx-auto">
+          <div class="col-6 mx-auto">
             <div>
             	<a href="http://www.svcl.ucsd.edu/~nuno" target="_blank">
               		<img src="./figs/authors/nuno.jpg" alt="nuno" class="img-thumbnail">
@@ -425,7 +416,7 @@
             <br>
             <div class="text-muted text-center">
               <a href="http://www.svcl.ucsd.edu/~nuno" target="_blank">
-                <h3 class="mb-2">Nuno Vasconcelos</h3>
+                <h4 class="mb-2 text-primary">Nuno Vasconcelos</h4>
               </a>
               <h5>UC San Diego</h5>
             </div>
@@ -441,7 +432,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <h5 class="my-4 text-faded">Updated: April, 2019</h5>
+            <h5 class="my-4 text-faded">Updated: June, 2019</h5>
           </div>
         </div>
       </div>
@@ -455,7 +446,6 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="js/creative.min.js"></script>
 
   </body>
 
