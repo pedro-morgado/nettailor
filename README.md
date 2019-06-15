@@ -1,4 +1,4 @@
-<img src="docs/figs/teaser.png" style="width:600;height:250">
+<img src="docs/figs/teaser_row.png" width="600">
 
 # NetTailor [[Project Page]](https://pedro-morgado.github.io/nettailor/)
 
@@ -22,6 +22,8 @@ In Computer Vision and Pattern Recognition, 2019.
 2. COCO API (from https://github.com/cocodataset/cocoapi)
 
 ###  Getting started
+NOTE: This repo is still under development. If you find any issues running our code, missing files, etc, please do contact me.
+
 Download and prepare demo datasets: SVHN, Flowers and Pascal VOC.
 ```bash
 >> cd data && python prepare_data.py
