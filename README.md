@@ -4,7 +4,7 @@
 
 This repository contains the source code accompanying our CVPR 2019 paper.
 
-**[NetTailor: Tuning the architecture, not just the weights.](https://arxiv.org)**  
+**[NetTailor: Tuning the architecture, not just the weights.](https://arxiv.org/abs/1907.00274)**  
 [Pedro Morgado](http://www.svcl.ucsd.edu/~morgado), [Nuno Vasconcelos](http://www.svcl.ucsd.edu/~nuno).  
 In Computer Vision and Pattern Recognition, 2019.
 
