@@ -38,12 +38,9 @@ def main():
 
     # Args
     logger.add_line(str(datetime.datetime.now()))
-    print(str(datetime.datetime.now()))
     logger.add_line("="*30+"   Arguments   "+"="*30)
-    print("="*30+"   Arguments   "+"="*30)
     for k in args.__dict__:
         logger.add_line(' {:30}: {}'.format(k, str(args.__dict__[k])))
-        print(' {:30}: {}'.format(k, str(args.__dict__[k])))
 
 
     # Data
@@ -55,9 +52,7 @@ def main():
             mode=mode, 
             num_workers=args.workers)
         logger.add_line("\n"+"="*30+"   Train data   "+"="*30)
-        print("\n"+"="*30+"   Train data   "+"="*30)
         logger.add_line(str(train_loader.dataset))
-        print(str(train_loader.dataset))
 
         val_loader = dataloaders.get_dataloader(
             dataset=args.task, 
@@ -67,9 +62,7 @@ def main():
             num_workers=args.workers)
         num_classes = train_loader.dataset.num_classes
         logger.add_line("\n"+"="*30+"   Validation data   "+"="*30)
-        print("\n"+"="*30+"   Validation data   "+"="*30)
         logger.add_line(str(val_loader.dataset))
-        print(str(val_loader.dataset))
 
     elif mode == 'eval':
         test_loader = dataloaders.get_dataloader(
@@ -80,9 +73,7 @@ def main():
             num_workers=args.workers)
         num_classes = test_loader.dataset.num_classes
         logger.add_line("\n"+"="*30+"   Test data   "+"="*30)
-        print("\n"+"="*30+"   Test data   "+"="*30)
         logger.add_line(str(test_loader.dataset))
-        print(str(test_loader.dataset))
 
 
     # Model
@@ -93,13 +84,9 @@ def main():
     model = model.to(DEVICE)
 
     logger.add_line("="*30+"   Model   "+"="*30)
-    print("="*30+"   Model   "+"="*30)
     logger.add_line(str(model))
-    print(str(model))
     logger.add_line("="*30+"   Parameters   "+"="*30)
-    print("="*30+"   Parameters   "+"="*30)
     logger.add_line(proj_utils.parameter_description(model))
-    print(proj_utils.parameter_description(model))
 
     #Loss
     criterion = nn.CrossEntropyLoss()
@@ -112,14 +99,12 @@ def main():
         for epoch in range(args.epochs):
             # Train for one epoch
             logger.add_line("="*30+"   Train (Epoch {})   ".format(epoch)+"="*30)
-            print("="*30+"   Train (Epoch {})   ".format(epoch)+"="*30)
             optimizer = proj_utils.adjust_learning_rate(optimizer, epoch, args.lr, args.lr_decay_epochs, logger)
             train(train_loader, model, criterion, optimizer, epoch, logger)
 
             if epoch % args.eval_freq == args.eval_freq-1 or epoch == args.epochs-1:
                 # Evaluate on validation set
                 logger.add_line("="*30+"   Valid (Epoch {})   ".format(epoch)+"="*30)
-                print("="*30+"   Valid (Epoch {})   ".format(epoch)+"="*30)
                 err, acc, run_time = validate(val_loader, model, criterion, logger, epoch)
                 
                 # remember best err and save checkpoint
@@ -137,13 +122,9 @@ def main():
         err, acc, run_time = validate(test_loader, model, criterion, logger)
 
     logger.add_line('='*30+'  COMPLETED  '+'='*30)
-    print('='*30+'  COMPLETED  '+'='*30)
     logger.add_line('[RUN TIME] {time.avg:.3f} sec/sample'.format(time=run_time))
-    print('[RUN TIME] {time.avg:.3f} sec/sample'.format(time=run_time))
     logger.add_line('[FINAL] {name:<30} {loss:.7f}'.format(name='crossentropy', loss=err))
-    print('[FINAL] {name:<30} {loss:.7f}'.format(name='crossentropy', loss=err))
     logger.add_line('[FINAL] {name:<30} {acc:.7f}'.format(name='accuracy', acc=acc))
-    print('[FINAL] {name:<30} {acc:.7f}'.format(name='accuracy', acc=acc))
 
 
 def train(data_loader, model, criterion, optimizer, epoch, logger):
@@ -182,14 +163,6 @@ def train(data_loader, model, criterion, optimizer, epoch, logger):
 
         if i % args.print_freq == 0 or i+1 == len(data_loader):
             logger.add_line(
-                "TRAIN [{:5}][{:5}/{:5}] | Time {:16} Data {:16} Accuracy {:18} Loss {:16}".format(
-                    str(epoch), str(i), str(len(data_loader)), 
-                    "{t.val:.3f} ({t.avg:.3f})".format(t=batch_time),
-                    "{t.val:.3f} ({t.avg:.3f})".format(t=data_time),
-                    "{t.val:.3f} ({t.avg:.3f})".format(t=acc_avg),
-                    "{t.val:.3f} ({t.avg:.3f})".format(t=loss_avg),
-                    ))
-            print(
                 "TRAIN [{:5}][{:5}/{:5}] | Time {:16} Data {:16} Accuracy {:18} Loss {:16}".format(
                     str(epoch), str(i), str(len(data_loader)), 
                     "{t.val:.3f} ({t.avg:.3f})".format(t=batch_time),
