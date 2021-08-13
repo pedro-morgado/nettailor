@@ -5,6 +5,7 @@ from PIL import Image
 from pycocotools.coco import COCO
 from torchvision import datasets, transforms
 import torch.utils.data as data
+import numpy as np
 
 
 IMG_EXTENSIONS = [
