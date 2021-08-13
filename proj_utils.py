@@ -52,6 +52,7 @@ class Logger(object):
 
     def add_line(self, content):
         self.fp.write(content+'\n')
+        print(content+'\n')
         self.fp.flush()
 
 def load_checkpoint(model, model_dir=None, model_fn=None, tensors=None, optimizer=None, outps=None):
