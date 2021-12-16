@@ -541,7 +541,7 @@ def create_model(backbone, num_classes, max_skip):
 ##########################################################################################
 
 if __name__ == '__main__':
-    device = torch.device("cpu")
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = create_model('resnet18', 10, max_skip=3)
     model.to(device)
 

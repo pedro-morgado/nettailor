@@ -4,7 +4,7 @@ import torch.nn.functional as F
 from torch.nn.parameter import Parameter
 import numpy as np
 import collections
-from nettailor import NetTailorBlock, BasicProxy, conv, conv1x1, conv3x3
+from .student_resnet import NetTailorBlock, BasicProxy, conv, conv1x1, conv3x3
 from proj_utils import AverageMeter
 
 __all__ = [ 

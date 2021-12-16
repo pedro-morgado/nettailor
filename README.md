@@ -55,7 +55,9 @@ To execute with default parameters, simply run:
 After publication, we modified the dataloader for the VOC12 and SVHN datasets to remove random cropping. This resulted in better performance than published results.
 
 ### NetTailor on Visual Decathlon Challenge and trained models
-We also release the final models obtained in the visual decathlon challenge. Universal blocks can be downloaded [here](http://www.svcl.ucsd.edu/~morgado/nettailor/data/wide_resnet26.pth.tar) and task-specific blocks [here](http://www.svcl.ucsd.edu/~morgado/nettailor/data/decathlon_models.tar.gz).
+We also release the final models obtained in the visual decathlon challenge. Universal blocks can be downloaded [here](http://www.svcl.ucsd.edu/~morgado/nettailor/data/wide_resnet26.pth.tar) and task-specific blocks [here](http://www.svcl.ucsd.edu/~morgado/nettailor/data/decathlon_models.tar.gz). 
+
+If you face any issue in downloading those two blocks, try to use "Save link as" feature in Google chrome.
 
 ##### Code tour
 1. ``decathlon_dataloaders.py``: Dataloaders for visual decathlon data.
